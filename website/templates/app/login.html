@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Login | {*appName*}</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<meta content="Login" name="description"/>
+<link href="/static/favicon.png" rel="icon" type="image/x-icon"/>
+<link href="/static/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+<script src="/static/pack/2OQ1.js"></script><link href="/static/pack/qB9v.css" rel="stylesheet"/></head>
+<body>
+<main class="container page-center">
+<form id="login" onsubmit="false">
+<div class="title">WELCOME</div>
+<input autofocus="" name="ea" placeholder="email address" type="email"/>
+<input name="pw" placeholder="password" type="password"/>
+<span class="hint"><a id="forgot-pw">Forgot password?</a></span>
+<input type="submit" value="LOG IN"/>
+<span class="hint">Need an acount? <a id="btn-signup">Create new account</a></span>
+</form>
+<form class="hidden" id="verify" onsubmit="false">
+<div class="title">SIGN UP</div>
+<span class="hint">By signing up, you agree to the <a>Terms of Service and Privacy Policy</a>, including <a>Cookie Use</a>.</span>
+<input name="ea" placeholder="email address" type="email"/>
+<div class="hint">The verification code is only valid for 5 minutes, and you can only try to enter it 3 times at most. </div>
+<input maxlength="4" name="vc" pattern="[0-9]" placeholder="verification code" type="text"/>
+<div class="hint"><span class="sent-verify hidden">The verification code has been sent, please check your mailbox. </span><a id="btn-verify">Send verification code.</a></div>
+<input class="sent-verify hidden" type="submit" value="VERIFY"/>
+<div class="sent-verify-del" style="height:20px;"></div>
+<span class="hint">Already have an account? <a id="btn-login1">Log in</a></span>
+</form>
+<form class="hidden" id="signup" onsubmit="false">
+<div class="title">SIGN UP</div>
+<section id="signup-sec1">
+<span class="hint">at least 8 characters(a-z,A-Z,0-9 and _)</span>
+<input name="text" pattern="[\w]{8,}" placeholder="username" type="text"/>
+<input id="signup-next1" type="button" value="NEXT"/>
+<span class="hint"><a id="signup-back1">Log in</a></span>
+</section>
+<section class="hidden" id="signup-sec2">
+<span class="hint">at least 8 characters</span>
+<input name="pw1" pattern="[\S]{8,}" placeholder="password" type="password"/>
+<span class="hint">reenter your password</span>
+<input name="pw2" pattern="[\S]{8,}" placeholder="comfirm password" type="password"/>
+<input type="submit" value="SIGN UP"/>
+<span class="hint"><a id="signup-back2">Back</a></span>
+</section>
+</form>
+</main>
+</body>
+</html>

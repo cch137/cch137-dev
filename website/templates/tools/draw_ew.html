@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<title>抽签签</title>
+<style>
+body {
+background-color: rgb(16, 18, 20);
+color: white;
+user-select: none;
+margin: 0;
+--sz: 81px;
+font-family: consolas, Arial, Helvetica, sans-serif;
+overflow: hidden;
+}
+main {
+position: absolute;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+overflow: hidden;
+margin: 0;
+padding: 0;
+}
+.title {
+position: absolute;
+padding: 100vh 100vw;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+font-weight: bold;
+/* letter-spacing: calc(var(--sz)/4); */
+font-size: var(--sz);
+text-shadow: 0 0 calc(var(--sz)/16) rgba(255, 255, 255, 0.5);
+text-align: center;
+white-space: nowrap;
+}
+button {
+background-color: #ff0000;
+color: white;
+padding: 28px 90px;
+margin: 20px 0;
+border: none;
+cursor: pointer;
+width: 100%;
+}
+button:hover {
+opacity: 0.8;
+}
+</style></head>
+<body>
+<main>
+<div style="text-align: center;">Click the page to pick two numbers(1-<span id="maxNum">46</span>)</div>
+<div style="position: absolute;bottom: 0;left: 50%;transform: translate(-50%,0);z-index: 100;padding: 20px;">
+<button onclick="reset()" onfocus="this.blur()" style="cursor: pointer;">RESET</button>
+</div>
+<img src="https://cdn.discordapp.com/attachments/901465057920188436/945304383460085850/272250393_3155138244718334_5713885616751341817_n.gif" style="position: absolute;bottom: 0;left: 65%;display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;"/>
+<img src="https://cdn.discordapp.com/attachments/901465057920188436/945304383460085850/272250393_3155138244718334_5713885616751341817_n.gif" style="position: absolute;bottom: 0;right: 65%;display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;"/>
+<div class="title" onclick="draw()">
+<div id="board1">0</div>
+<div id="board2">0</div>
+<audio id="clap" preload="auto" src="/static/tools/draw/掌声.mp3"></audio>
+<audio id="thanks" preload="auto" src="/static/tools/draw/谢谢大家.mp3"></audio>
+</div>
+</main>
+<script>
+var maxNum = 46
+var fate1 = [34]
+var fate2 = [6,11,12,20]
+var isFated = true
+var results1 = []
+var results2 = []
+var sound = false
+const board1 = document.querySelector('#board1')
+const board2 = document.querySelector('#board2')
+const clap = document.querySelector('#clap')
+const thanks = document.querySelector('#thanks')
+function num_string(n,d=2) {
+n = `${n}`
+while (n.length < d) {
+n = `0${n}`
+}
+return n
+}
+function give_number_in_arr(arr) {
+return num_string(arr[Math.floor(Math.random()*arr.length)]||'')
+}
+function give_number_in_range() {
+return num_string(Math.ceil(Math.random()*maxNum))
+}
+function draw() {
+let i = 0
+while (i < 20) {
+setTimeout(() => {
+board1.innerText = give_number_in_range()
+board2.innerText = give_number_in_range()
+},i++ * 50)
+}
+if (isFated) {
+setTimeout(() => {
+if (!results1.length || !results2.length) {
+reset(1)
+}
+let x = Math.random()
+let f1 = results1.pop()
+let f2 = results2.pop()
+if (x > 0.5) {
+x = f1
+f1 = f2
+f2 = x
+}
+if (f2) {
+board1.innerText = f2
+}
+if (f1) {
+board2.innerText = f1
+}
+if (sound) {
+clap.play()
+}
+},i * 50)
+}
+}
+function reset() {
+let x = document.querySelector('#maxNum')
+if (x.innerText != maxNum) {
+x.innerText = maxNum
+}
+board1.innerText = 0
+board2.innerText = 0
+while (results1.length) {
+results1.pop()
+}
+while (results2.length) {
+results2.pop()
+}
+for (let i = 0; i < 16; i ++) {
+results1.push(give_number_in_arr(fate1))
+}
+for (let i = 0; i < 16; i ++) {
+results2.push(give_number_in_arr(fate2))
+}
+if (sound) {
+thanks.play()
+}
+console.log('results1',results1)
+console.log('results2',results2)
+}
+window.onkeypress = draw
+reset(1)
+history.replaceState(0,0,location.pathname)
+</script>
+</body>
+</html>

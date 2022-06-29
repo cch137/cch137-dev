@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Drive | {* appName *}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="A cloud drive">
+    <link rel="icon" href="/static/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/favicon.png" type="image/x-icon">
+    <script src="https://unpkg.com/vue/dist/vue.global.prod.js"></script>
+</head>
+<body>
+    <header>
+        <div>
+            <a href="/">HOME</a>
+        </div>
+        <div id="appname">
+            <a href><h2>{* appName *}</h2></a>
+        </div>
+        <div id="path"></div>
+    </header>
+    <div id="container">
+        <div id="sidebar">
+            <div>服务器休眠后此云端硬盘内的文件会被清除。</div>
+        </div>
+        <div id="view">
+            <div v-for="i in items" class="item" @click="activate" @contextmenu="open_menu(i.item_id)" @dblclick="openItem(i.item_id)">
+                <div>{{ i.filename }}</div>
+                <div class="details">{{ i.size }}</div>
+            </div>
+        </div>
+        <div id="infobar"></div>
+        <div id="file_menu">
+            <div class="menu-item" href="open">Open</div>
+            <div class="menu-item" href="download">Download</div>
+            <div class="menu-item" href="rename">Rename</div>
+            <div class="menu-item" href="delete">Delete</div>
+        </div>
+        <div id="upload" title="Upload">
+            <span>+</span>
+            <form>
+                <input type="file" multiple>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

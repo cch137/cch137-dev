@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>{* classcode *} | SCHE | {* appName *}</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<meta content="The space of LEI137" name="description"/>
+<link href="/static/favicon.png" rel="icon" type="image/x-icon"/>
+<link href="/static/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+<script src="https://unpkg.com/vue/dist/vue.global.prod.js"></script>
+<link href="/static/pack/6Sy-.css" rel="stylesheet"/><style>
+body {
+user-select: none;
+--bg-default: rgb(20, 22, 24);
+--bg-default: rgb(18, 22, 26);
+--bg-hightlight: rgb(20, 28, 32);
+--bg-super-hightlight: rgb(20, 42, 48);
+--sz: 20px;
+--title-color: rgb(215, 215, 215);
+--item-color: rgb(185, 185, 185);
+--side-color: rgb(165, 165, 165);
+--head-color: rgb(145, 145, 145);
+--footer-color: rgb(90, 90, 90);
+min-width: max-content;
+}
+data {
+display: none;
+}
+a {
+text-decoration: none;
+}
+#title {
+font-size: 35px;
+font-weight: bold;
+text-align: center;
+margin-bottom: 15px;
+color: var(--title-color);
+letter-spacing: 10px;
+}
+#container {
+height: 100vh;
+width: 100vw;
+min-width: max-content;
+justify-content: left;
+}
+#sche {
+margin: auto;
+padding: 20px;
+visibility: hidden;
+}
+#sche[data-v-app] {
+visibility: visible;
+}
+table {
+border-collapse: collapse;
+border-radius: 10px;
+overflow: hidden;
+}
+thead {
+background-color: var(--bg-default);
+filter: brightness(1.75);
+color: var(--head-color);
+}
+tbody td.order, tbody td.period {
+background-color: var(--bg-default);
+filter: brightness(1.5);
+color: var(--side-color);
+font-size: calc(var(--sz) * 0.85);
+}
+td {
+padding: 0;
+background-color: var(--bg-default);
+}
+td > div {
+padding: 5px 15px;
+white-space: nowrap;
+text-align: center;
+}
+td.item {
+filter: brightness(1.25);
+transition: all 0.2s;
+color: var(--item-color);
+}
+td.item:hover {
+filter: brightness(2);
+}
+td.item.current {
+background-color: var(--bg-super-hightlight);
+}
+td.today {
+background-color: var(--bg-hightlight);
+}
+td.item > .link {
+cursor: pointer;
+}
+footer {
+display: flex;
+flex-wrap: nowrap;
+position: fixed;
+bottom: 0;
+left: 50%;
+transform: translate(-50%,0);
+padding: 10px 0;
+text-align: center;
+white-space: nowrap;
+color: var(--footer-color);
+}
+footer >*>* {
+color: var(--footer-color);
+font-size: calc(var(--sz) * 0.8);
+padding: 0 10px;
+transition: all 0.2s;
+cursor: pointer;
+}
+footer >*>*:hover {
+filter: brightness(2);
+}
+</style></head>
+<body>
+<data>{* data | safe *}</data>
+<script>
+const Page = {
+data: 0,
+today_items: 0,
+current: 0,
+select: 0
+}
+function run() {
+const duration = (new Date()).getTime()
+for (let i = 0; i < Page.today_items.length; i++) {
+const x = Page.today_items[i]
+// const s = +i.getAttribute('start')
+const e = +x.getAttribute('end')
+if (!(duration > e)) {
+if (!x.classList.contains('current') && x.innerText) {
+x.classList.add('current')
+if (Page.current) {
+Page.current.classList.remove('current')
+}
+Page.current = x
+}
+setTimeout(run,e-duration+1000)
+return 0
+}
+Page.today_items.shift()
+i--
+}
+if (Page.current) {
+Page.current.classList.remove('current')
+Page.current = null
+}
+}
+window.onload = function() {
+history.replaceState(0,0,location.pathname)
+Page.data = JSON.parse(document.querySelector('data').innerText)
+if (!Page.data) {
+location = '/404'
+}
+Vue.createApp({
+data() {
+const data = Page.data
+return {
+classname :data.classname,
+th: data.table.shift(),
+rows: data.table,
+links: data.links
+}
+},
+methods: {
+open: function(link) {
+return window.open(link)
+}
+},
+}).mount('#sche')
+Page.today_items = [...document.querySelectorAll('.item.today')]
+Page.select = document.querySelector('select')
+const classcode = location.pathname.split('/').pop().toUpperCase()
+document.querySelector(`option[value="${classcode}"]`).selected = true
+Page.select.onchange = function() {
+location=`./${Page.select.value}`
+}
+run()
+}
+</script>
+<div class="flex-center" id="container">
+<div id="sche">
+<div id="title">{{ classname }}</div>
+<table :class="`weekday${today_weekday=(new Date()).getDay()}`" :created="(created=new Date()).getTime()" :today="today=(new Date(created.getFullYear(),created.getMonth(),created.getDate(),7,30)).getTime()">
+<thead>
+<tr>
+<td class="order">
+<div>{{ th.shift() }}</div>
+</td>
+<td class="period">
+<div>{{ th.shift() }}</div>
+</td>
+<td :class="`weekday${count=(++count&gt;6?1:count)||1} ${today_weekday==count?'today':''}`" v-for="i in th">
+<div>{{ i }}</div>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr v-for="i in rows">
+<td class="order">
+<div>{{ i.shift() }}</div>
+</td>
+<td :duration="t=i.shift()" :end="e=today+(new Date(`1970-01-01 ${t.split(' - ')[1]}`)).getTime()" :start="s=today+(new Date(`1970-01-01 ${t.split(' - ')[0]}`)).getTime()" class="period">
+<div>{{ t }}</div>
+</td>
+<td :class="`item weekday${count=(++count&gt;6?1:count)||1} ${count==6?'links':(today_weekday==count?'today':'')}`" :end="e" :start="s" v-for="j in i">
+<div :title="links[j]" @click="open(links[j])" class="link" v-if="links[j]">{{ j }}</div>
+<div v-else="">{{ j }}</div>
+</td>
+</tr>
+</tbody>
+</table>
+<footer>
+<span><a href="/tools" rel="noopener noreferrer">Home</a> · <a href="https://docs.google.com/spreadsheets/d/1OGcvBmpq50anarg3eNFgB4i5KS6ltVLb6hI55K38fa4/" rel="noopener noreferrer" target="_blank">GoogleSheet</a> ·
+<select>
+<option value="S3S3">S3S3</option>
+<option value="S3S1">S3S1</option>
+</select>
+</span>
+</footer>
+</div>
+</div>
+</body>
+</html>

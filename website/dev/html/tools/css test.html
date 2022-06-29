@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CSS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="CSS TEST">
+<style>
+html {
+}
+body {
+    margin: 2%;
+    color: white;
+    background-color: black;
+    --sz: 100px;
+}
+body > * {
+    margin: 1%;
+}
+.icon {
+    --sz2: calc(var(--sz) / 2);
+    --sz4: calc(var(--sz) / 4);
+    --sz8: calc(var(--sz) / 8);
+    --sz16: calc(var(--sz) / 16);
+    --sz32: calc(var(--sz) / 32);
+    --sz64: calc(var(--sz) / 64);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--sz);
+    width: var(--sz);
+    user-select: none;
+}
+.folder {
+    height: 80%;
+    width: 100%;
+}
+.folder-1 {
+    position: relative;
+    display: block;
+    height: 25%;
+    width: 45%;
+    background-color: goldenrod;
+    border-top-left-radius: var(--sz16);
+    border-top-right-radius: var(--sz16);
+}
+.folder-2 {
+    position: relative;
+    display: block;
+    height: 75%;
+    width: 100%;
+    background-color: gold;
+    border-radius: var(--sz16);
+    border-top-left-radius: 0;
+}
+.folder-1-1 {
+    position: relative;
+    display: block;
+    top: 60%;
+    z-index: +1;
+    left: 7.5%;
+    width: 195%;
+    height: calc(var(--sz) / 16 * 1.5);
+    border-top-left-radius: var(--sz32);
+    border-top-right-radius: var(--sz32);
+    background-color: cornsilk;
+}
+.file {
+    height: 100%;
+    width: 80%;
+    margin: 0 10%;
+    background-color: whitesmoke;
+    border-radius: var(--sz16);
+}
+.file-none-1 {
+    position: relative;
+    display: block;
+    height: calc(var(--sz8) * 0.75);
+    width: 75%;
+    top: 30%;
+    left: 10%;
+    background-color: darkslategrey;
+}
+.file-none-2 {
+    position: relative;
+    display: block;
+    height: calc(var(--sz8) * 0.75);
+    width: 55%;
+    top: 37.5%;
+    left: 10%;
+    background-color: darkslategrey;
+}
+</style>
+</head>
+<body>
+    <span class="icon">
+        <span class="folder">
+            <span class="folder-1">
+                <span class="folder-1-1"></span>
+            </span>
+            <span class="folder-2"></span>
+        </span>
+    </span>
+    <span class="icon">
+        <span class="file">
+            <span class="file-none-1"></span>
+            <span class="file-none-2"></span>
+        </span>
+    </span>
+</body>
+</html>

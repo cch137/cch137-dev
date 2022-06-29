@@ -1,0 +1,37 @@
+./ngrok authtoken 26PZFKgUrksFa1vnPca7HKJUWf3_2pGAJaGBmD8JnarPkPGdV
+./ngrok http 5000
+
+# ai137.herokuapp.com
+GT3qWdYtvY32PdCX 顺豪
+6LUeFutQx_emhF2a 陈俊铭
+
+/* 生成 requirements */
+pipreqs --encoding=utf8 --force --print .
+pigar -s ./
+
+/* 初始化专案 */
+heroku login
+git init
+heroku git:remote -a ai137
+
+heroku login
+git init
+heroku git:remote -a chdev
+
+/* 更新专案 */
+git add .
+git commit -am "make it better"
+git push heroku master
+
+/* 下载伺服器文件 */
+heroku git:clone -a i3zaki
+cd i3zaki
+
+/* log */
+heroku logs --tail
+
+/* Procfile references */
+web: gunicorn -b :$PORT app:app
+web: gunicorn -k flask_sockets.worker app:app
+web: gunicorn --workers=1 -b :$PORT app:app
+gunicorn -k geventwebsocket.gunicorn.workers.GeventWebSocketWorker -w 1 module:app

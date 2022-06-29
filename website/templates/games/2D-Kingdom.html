@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html class="darkmode2" lang="en">
+<head>
+<title>小黄球の冒险 | {* appName *}</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<meta content="The space of LEI137" name="description"/>
+<link href="/static/favicon.png" rel="icon" type="image/x-icon"/>
+<link href="/static/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+<script src="https://unpkg.com/vue/dist/vue.global.prod.js"></script>
+<script src="/static/pack/3pb1.js"></script><link href="/static/pack/xJm8.css" rel="stylesheet"/></head>
+<body>
+<div class="before-load" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);font-size: 64px;user-select: none;">小黄人の冒险</div>
+<div class="window" id="map">
+<div :id="i" class="scroll-detect" v-for="i in dir"></div>
+<div class="map-col" v-for="i in coor">
+<div :id="`_${j}`" class="block fog" v-for="j in i"></div>
+</div>
+<div class="window" id="panel">
+<div class="item">坐标：<span class="data" id="coor"></span></div>
+<div class="item">名字：<span @blur="typing_end" @focus="typing_start" class="data" contenteditable="true" id="name"></span><span @click="save_block_name" class="save-btn btn">保存</span></div>
+<div id="close-btn-bar"><span @click="close_panel" class="btn" id="close-btn">Close</span></div>
+<div id="controls">
+<div class="item" style="font-weight: bold;">操作</div>
+<div :id="i.id" @click="i.click(i.item)" class="item control" v-for="i in controls">
+<span>{{ i.name }} <span :title="`快捷键 [${i.key}]`" class="key">[{{ i.key }}]</span></span>
+</div>
+</div>
+</div>
+<div class="window" id="message-box">
+<div id="message-content"></div>
+<div @click="close_message" id="message-box-ok">OK</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" class="darkmode2">
+<head>
+    <title>小黄球の冒险 | {* appName *}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="The space of LEI137">
+    <link rel="icon" href="/static/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/favicon.png" type="image/x-icon">
+    <script src="https://unpkg.com/vue/dist/vue.global.prod.js"></script>
+    <!-- <link rel="stylesheet" href="/dev/css/fonts.css">
+    <link rel="stylesheet" href="/dev/css/games/2D-Kingdom.css">
+    <script src="/dev/js/games/2D-Kingdom.js"></script> -->
+</head>
+<body>
+    <div class="before-load" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);font-size: 64px;user-select: none;">小黄人の冒险</div>
+    <div id="map" class="window">
+        <div v-for="i in dir" :id="i" class="scroll-detect"></div>
+        <div v-for="i in coor" class="map-col">
+            <div v-for="j in i" class="block fog" :id="`_${j}`"></div>
+        </div>
+        <div id="panel" class="window">
+            <div class="item">坐标：<span id="coor" class="data"></span></div>
+            <div class="item">名字：<span id="name" class="data" contenteditable="true" @focus="typing_start" @blur="typing_end"></span><span class="save-btn btn" @click="save_block_name">保存</span></div>
+            <div id="close-btn-bar"><span id="close-btn" class="btn" @click="close_panel">Close</span></div>
+            <div id="controls">
+                <div class="item" style="font-weight: bold;">操作</div>
+                <div v-for="i in controls" class="item control" @click="i.click(i.item)" :id="i.id">
+                    <span>{{ i.name }} <span class="key" :title="`快捷键 [${i.key}]`">[{{ i.key }}]</span></span>
+                </div>
+            </div>
+        </div>
+        <div id="message-box" class="window">
+            <div id="message-content"></div>
+            <div id="message-box-ok" @click="close_message">OK</div>
+        </div>
+    </div>
+</body>
+</html>

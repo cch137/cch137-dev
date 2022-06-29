@@ -1,0 +1,11 @@
+{
+  "installed": {
+    "client_id": "590448660674-4em8vctli76du216dfjkioe185pg60md.apps.googleusercontent.com",
+    "project_id": "auth-349608",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_secret": "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",
+    "redirect_uris": ["http://localhost"]
+  }
+}

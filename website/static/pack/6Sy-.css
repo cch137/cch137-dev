@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+
+:root {
+    --default-font: 'Roboto', 'Noto Sans SC', 'Noto Sans TC', 'Microsoft YaHei';
+}
+:root {
+    --sz: 16px;
+    --selected-color: rgba(255, 255, 255, 0.2);
+    --nav-h: 65px;
+    --pd: calc(var(--sz) / 4);
+    --pd2: calc(var(--pd) / 2);
+    --pd3: calc(var(--pd) / 3);
+    --bg-default: rgb(20, 22, 24);
+    --bg-default: rgb(24, 27, 30);
+    --main-font-family: var(--default-font);
+    --main-color: white;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-default);
+}
+
+body,input,select {
+    font-size: var(--sz);
+    color: var(--main-color);
+    font-family: var(--main-font-family);
+}
+
+input,select {
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+input::placeholder {
+    color: inherit;
+    opacity: 0.5;
+}
+
+input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: transparent;
+    transition: all 1000s ease-in-out 0s;
+}
+
+.hidden {
+    display: none !important;
+}
+
+a {
+    color: inherit;
+}
+
+.flex-center {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+::-moz-selection {
+    background: var(--selected-color);
+}
+::selection {
+    background: var(--selected-color);
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+}
+
+@media screen and (max-width:500px){
+    html {
+        --sz: 14px !important;
+    }
+}
+/* scrollbar */
+:root {
+    --scrollbar-size: 10px;
+    --view-width: 90vw;
+}
+
+::-webkit-scrollbar {
+    height: var(--scrollbar-size);
+    width: var(--scrollbar-size);
+}
+
+::-webkit-scrollbar-corner {
+    background: rgb(255, 255, 255, 0.15);
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.175);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+@media screen and (max-width:500px){
+    :root {
+        --scrollbar-size: 5px;
+        --view-width: 90vw;
+    }
+}

@@ -1,0 +1,187 @@
+body {
+    padding: 0;
+    margin: 0;
+    --sz: 20px;
+    --sz_1-5: calc(var(--sz) * 1.5);
+    --sz_2: calc(var(--sz) * 2);
+    --sz2: calc(var(--sz) / 2);
+    --sz4: calc(var(--sz) / 4);
+    user-select: none;
+}
+
+data {
+    display: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 800px;
+    max-width: 80vw;
+    margin: auto;
+    justify-content: center;
+    align-self: center;
+}
+
+#pathname {
+    display: block;
+    width: 100%;
+    font-size: var(--sz_1-5);
+}
+
+#pathname > a:hover {
+    text-decoration: underline;
+}
+
+#view {
+    display: block;
+    width: 100%;
+    padding: var(--sz2);
+}
+
+.folder-loading {
+    text-align: center;
+    opacity: 0.5;
+}
+
+.item {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    padding: var(--sz2);
+    overflow: hidden;
+}
+
+.item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.item-name {
+    padding-left: var(--sz4);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-icon {
+    --i-sz: var(--sz);
+    --i-sz2: calc(var(--i-sz) / 2);
+    --i-sz4: calc(var(--i-sz) / 4);
+    --i-sz8: calc(var(--i-sz) / 8);
+    --i-sz16: calc(var(--i-sz) / 16);
+    --i-sz32: calc(var(--i-sz) / 32);
+    --i-sz64: calc(var(--i-sz) / 64);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--i-sz);
+    width: var(--i-sz);
+    user-select: none;
+}
+
+.icon-folder {
+    height: 80%;
+    width: 100%;
+}
+
+.icon-folder-1 {
+    position: relative;
+    display: block;
+    height: 25%;
+    width: 45%;
+    background-color: goldenrod;
+    border-top-left-radius: var(--i-sz16);
+    border-top-right-radius: var(--i-sz16);
+}
+
+.icon-folder-2 {
+    position: relative;
+    display: block;
+    height: 75%;
+    width: 100%;
+    background-color: gold;
+    border-radius: var(--i-sz16);
+    border-top-left-radius: 0;
+}
+
+.icon-folder-1-1 {
+    position: relative;
+    display: block;
+    top: 60%;
+    z-index: +1;
+    left: 7.5%;
+    width: 195%;
+    height: calc(var(--i-sz) / 16 * 1.5);
+    border-top-left-radius: var(--i-sz32);
+    border-top-right-radius: var(--i-sz32);
+    background-color: cornsilk;
+}
+
+.icon-file {
+    height: 100%;
+    width: 80%;
+    margin: 0 10%;
+    background-color: whitesmoke;
+    border-radius: var(--i-sz16);
+}
+
+.icon-file-none-1 {
+    position: relative;
+    display: block;
+    height: calc(var(--i-sz8) * 0.75);
+    width: 75%;
+    top: 30%;
+    left: 10%;
+    background-color: darkslategrey;
+}
+
+.icon-file-none-2 {
+    position: relative;
+    display: block;
+    height: calc(var(--i-sz8) * 0.75);
+    width: 55%;
+    top: 37.5%;
+    left: 10%;
+    background-color: darkslategrey;
+}
+/* :root {
+    --scrollbarSize: 7.5px;
+}
+
+::-webkit-scrollbar {
+    height: var(--scrollbarSize);
+    width: var(--scrollbarSize);
+}
+
+::-webkit-scrollbar-corner {
+    background: rgb(30, 40, 40);
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--scrollbarSize);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+@media screen and (max-width:500px){
+    :root {
+        --scrollbarSize: 5px;
+    }
+} */

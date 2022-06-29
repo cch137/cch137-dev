@@ -1,0 +1,95 @@
+:root {
+    --size: 10px;
+    --item-bg: #fff;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    user-select: none;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    color: #fff;
+}
+
+#score {
+    position: absolute;
+    padding: 0.5vmin;
+    font-size: 20px;
+    opacity: 0.5;
+}
+
+/* #score:hover {
+    cursor: pointer;
+    opacity: 0.75;
+} */
+
+#map {
+    display: flex;
+    position: absolute;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.01);
+    height: 100%;
+    width: 100%;
+    background-color: rgb(15, 15, 15);
+    font-family: 'consolas';
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 50vmin;
+    letter-spacing: 5vmin;
+    font-weight: bold;
+}
+
+#map.sleeping * {
+    --item-bg: #fff !important;
+    --size: 1px !important;
+    pointer-events: none;
+}
+
+#map.genesis * {
+    --item-bg: #fff !important;
+    --size: var(--minSize) !important;
+}
+
+#map.allowGlow .villager{
+    box-shadow: 0 0 calc(var(--minSize) * var(--energy) / 2) var(--item-bg);
+}
+
+.villager {
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    height: var(--size);
+    width: var(--size);
+    color: rgba(255, 255, 255, 0.5);
+    background-color: var(--item-bg);
+    border-radius: 50%;
+    transform: translate(-50%,-50%);
+    transition: all var(--frequency);
+    cursor: pointer;
+}
+
+.villager:hover {
+    box-shadow: 0 0 0 transparent;
+}
+
+.villager.dying {
+    opacity: 0;
+    background-color: transparent;
+    box-shadow: 0 0 0 transparent;
+    transition: all 0.5s ease-out;
+    pointer-events: none;
+}

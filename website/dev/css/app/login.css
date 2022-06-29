@@ -1,0 +1,78 @@
+body {
+    height: 100vh;
+    user-select: none;
+    background-color: rgb(62, 134, 158) !important;
+}
+
+.container {
+    position: absolute;
+    box-sizing: border-box;
+    width: 480px;
+    max-width: 80vw;
+    padding: 6vmax 40px;
+    border-radius: 10px;
+    background-color: rgb(40, 40, 40);
+}
+
+form, form > section {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    --sz: 20px;
+    flex: 1;
+    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+input[type="submit"],input[type="button"] {
+    margin: 40px 5px 20px 5px;
+    background-color: hsl(159, 42%, 40%) !important;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+input[type="submit"]:hover,input[type="button"]:hover {
+    filter: brightness(0.9);
+}
+
+@media screen and (max-width:500px){
+    .container {
+        max-width: 90vw;
+        padding: 6vmax 20px;
+    }
+    input {
+        --sz: 16px;
+    }
+}
+
+form .hint {
+    color: rgb(215, 215, 215);
+    padding: 0 10px;
+}
+
+form .hint a {
+    color: dodgerblue;
+    filter: brightness(1.25);
+    cursor: pointer;
+}
+
+form .hint a.disable {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+form .hint a:hover {
+    text-decoration: underline;
+}
+
+.title {
+    margin-bottom: 20px;
+    font-size: 36px;
+    text-align: center;
+    letter-spacing: 5px;
+    font-weight: bold;
+}

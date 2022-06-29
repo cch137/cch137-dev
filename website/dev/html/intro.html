@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{* appName *}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="The space of {* appName *}">
+    <meta name="keywords" content="{* appName *}, space">
+    <meta name="author" content="{* appName *}">
+    <meta property="og:title" content="{* appName *}">
+    <meta property="og:description" content="The space of {* appName *}">
+    <meta property="og:image" content="/static/cover.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="/static/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/favicon.png" type="image/x-icon">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Consolas', 'Microsoft YaHei';
+            text-align: center;
+        }
+        main {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 95vw;
+            transform: translate(-50%,-50%);
+            white-space: normal;
+        }
+        a {
+            font-weight: bold;
+            color: lightskyblue;
+        }
+    </style>
+</head>
+<body>
+    <img src="/static/cover.png" style="display: none;">
+    <main>
+        <div>You should be redirected automatically to target URL:</div>
+        <div style="padding: 10px 0;">
+            <a href="{* full_path *}" id="path">{* path *}</a>
+        </div>
+        <div>If not click the link.</div>
+    </main>
+    <script>
+        location = document.querySelector('#path').innerText
+    </script>
+</body>
+</html>

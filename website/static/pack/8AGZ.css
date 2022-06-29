@@ -1,0 +1,116 @@
+:root {
+    --block-width: 80vw;
+}
+
+body {
+    width: max-content;
+    margin: 20px auto;
+    background-color: black;
+    color: white;
+    font-family: var(--default-font);
+    user-select: none;
+}
+
+.v {
+    visibility: hidden;
+}
+
+.v[data-v-app] {
+    visibility: visible;
+}
+
+data {
+    display: none;
+}
+
+a {
+    color: inherit;
+}
+
+.block {
+    width: var(--block-width);
+    max-width: 800px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table td:nth-child(1) {
+    width: max-content;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.block table {
+    width: 100%;
+}
+
+.report-card tr:nth-child(1),.attd-card tr:nth-child(1) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.table-view tr:nth-child(1) > td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#namecard {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#namecard table {
+    max-width: max-content;
+}
+
+@media screen and (max-width:500px){
+    :root {
+        --block-width: 92.5vw;
+    }
+
+    .report-card td:nth-child(2) {
+        display: none;
+    }
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+
+:root {
+    --default-font: 'Roboto', 'Noto Sans SC', 'Noto Sans TC', 'Microsoft YaHei';
+}
+/* scrollbar */
+:root {
+    --scrollbar-size: 10px;
+    --view-width: 90vw;
+}
+
+::-webkit-scrollbar {
+    height: var(--scrollbar-size);
+    width: var(--scrollbar-size);
+}
+
+::-webkit-scrollbar-corner {
+    background: rgb(255, 255, 255, 0.15);
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.175);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+@media screen and (max-width:500px){
+    :root {
+        --scrollbar-size: 5px;
+        --view-width: 90vw;
+    }
+}

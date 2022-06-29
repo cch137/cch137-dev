@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Login">
+    <link rel="icon" href="/static/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/favicon.png" type="image/x-icon">
+</head>
+<body>
+    <script>
+        const Geo = {loc:[]}
+        function getPosition() {
+            console.log('run')
+            navigator.geolocation.getCurrentPosition(function(position) {
+                alert(position.coords.latitude, position.coords.longitude)
+                Geo.loc = position
+                console.log(position)
+            })
+            if (!Geo.loc.length) {
+                setTimeout(getPosition,0)
+            }
+        }
+        window.onload = getPosition
+    </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>座位表生成器</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<meta content="座位表生成器" name="description"/>
+<script>
+history.replaceState(0,0,location.pathname)
+window.onload = function() {
+const col = 7
+const row = 7
+const table = []
+const vol = 46
+let empty_n = col * row - vol
+if (empty_n < 0) {
+alert(`座位不足，${empty_n*-1} 项无法被排序。`)
+return 0
+}
+const empty = []
+while (empty_n--) {
+empty.push('-')
+}
+// 生成二维阵列
+for (let i = 0; i < row; i ++ ) {
+const r = []
+for (let j = 0; j < col; j ++ ) {
+r.push(null)
+}
+table.push(r)
+}
+console.log(table)
+// 放入空的 row
+while (empty.length / col >= 1) {
+const r = []
+for (let i = 0; i < col; i ++ ) {
+r.push('-')
+}
+table.push(r)
+}
+const align_direction = 'center'
+let temp_arr = []
+switch (align_direction) {
+case 'left':
+break
+case 'right':
+break
+case 'center':
+break
+default:
+break
+}
+}
+</script>
+<style>
+body {
+background-color: rgb(20, 22, 24);
+color: white;
+font-size: 16px;
+user-select: none;
+}
+* {
+font-family: 'Microsoft YaHei';
+-webkit-tap-highlight-color: transparent;
+}
+main {
+margin-top: 5vmin;
+}
+.title {
+text-align: center;
+font-size: 32px;
+font-weight: bold;
+}
+select {
+color: white;
+font-size: 16px;
+}
+table {
+margin: auto;
+padding: 2.5vh 0;
+}
+td {
+--bg: rgb(96, 96, 96);
+padding: 1vh 1vw;
+}
+.girl {
+--bg: hsl(335, 82%, 50%);
+}
+.boy {
+--bg: hsl(208, 60%, 40%);
+}
+td > div {
+padding: 8px;
+background-color: var(--bg);
+border-radius: 3px;
+text-align: center;
+}
+.controls {
+padding: 2.5vh 0;
+}
+.btn-ctn {
+padding: 15px;
+}
+.btn-ctn, .btn-ctn > *  {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+margin: 4px 8px;
+}
+.btn-ctn input, .btn {
+border-radius: 10px;
+margin: 0 4px;
+padding: 8px 12px;
+}
+.btn-ctn > * > span {
+padding: 8px;
+}
+.btn {
+margin: auto;
+width: 100px;
+color: black;
+cursor: pointer;
+text-align: center;
+}
+.btn:hover {
+filter: brightness(0.9);
+}
+#create {
+background-color: lightgrey;
+}
+#clear {
+display: none;
+background-color: darkgrey;
+}
+main.present #clear {
+display: inherit !important;
+}
+input, select {
+border: 0;
+outline: 0;
+}
+.btn-ctn input {
+width: 20px;
+margin: 0;
+color: black;
+}
+.btn-ctn select {
+cursor: pointer;
+background-color: transparent;
+}
+.btn-ctn option {
+color: black;
+}
+@media screen and (max-width:500px){
+.btn-ctn {
+justify-content: left;
+}
+.btn-ctn > * {
+width: 100%;
+justify-content: left;
+}
+}
+</style></head>
+<body>
+<main>
+<div class="controls">
+<div class="title">座位表生成器</div>
+<div class="btn-ctn">
+<label title="学生总数">
+<span>STUDENTS</span>
+<input id="stus" type="text" value="46"/>
+</label>
+<label title="男生座号的第一位">
+<span>BREAK</span>
+<input id="nd_set" type="text" value="22"/>
+</label>
+<label title="行">
+<span>ROWS</span>
+<input id="rows" type="text" value="7"/>
+</label>
+<label title="列">
+<span>COLUMN</span>
+<input id="cols" type="text" value="7"/>
+</label>
+<div>
+<select id="align" title="对齐方式">
+<option value="left">靠左</option>
+<option selected="" value="center">居中</option>
+<option value="right">靠右</option>
+</select>
+</div>
+</div>
+<div>
+<div class="btn" id="create" title="创建">CREATE</div>
+</div>
+</div>
+<table></table>
+<div class="controls">
+<div>
+<div class="btn" id="clear" title="清除">CLEAR</div>
+</div>
+</div>
+</main>
+</body></html>

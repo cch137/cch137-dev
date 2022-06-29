@@ -1,0 +1,60 @@
+body {
+    font-family: "consolas";
+    padding: 0;
+    margin: 0;
+    background-color: lightgray;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 18px;
+    --selected: #2a9df4;
+}
+
+table {
+    background-color: rgb(215, 215, 215);
+    font-size: 16px;
+    user-select: none;
+}
+
+/* thead {
+    position: sticky;
+    top: 0;
+} */
+
+#selectAll {
+    background-color: #d7d7d7;
+}
+
+.index {
+    background-color: #ebebeb;
+    vertical-align: middle;
+    text-align: center;
+}
+
+td {
+    border: 1px solid transparent;
+    padding: 1px 2px 1px 2px;
+    cursor: default;
+    vertical-align: top;
+    white-space: nowrap;
+}
+
+.cell {
+    border: 1px solid transparent;
+    background-color: white;
+    min-width: 50px;
+}
+
+.cell.selected {
+    outline: 2.5px solid var(--selected);
+}
+
+.cell.copying {
+    outline: 2.5px dashed var(--selected) !important;
+}
+
+.cell:focus {
+    position: relative;
+    outline: 2px solid var(--selected);
+    box-shadow: 2px 2px 4px grey;
+    z-index: 999;
+    cursor: text;
+}

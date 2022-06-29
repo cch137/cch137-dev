@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>座位表生成器</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<meta content="座位表生成器" name="description"/>
+<script>
+history.replaceState(0,0,location.pathname)
+function unroll(arr) {
+function _unroll(arr,values) {
+if(arr instanceof Array) {
+let a_len = arr.length
+let i=0
+for(;i<a_len;i++) {
+if(arr[i] instanceof Array) {
+_unroll(arr[i],values)
+}
+else {
+values.push(arr[i])
+}
+}
+return values
+}
+else {
+values.push(arr)
+}
+}
+return _unroll(arr,[])
+}
+function fill_zero(s,d) {
+s = `${s}`
+while (s.length < d) {
+s = `0${s}`
+}
+return s
+}
+function shuffle_arr(arr) {
+return [...arr].map(value=>({value,sort: Math.random()})).sort((a,b)=>a.sort-b.sort).map(({value})=>value)
+}
+function shuffle_students(stu_n) {
+let x = []
+while (x.length < stu_n) {
+let i = Math.ceil(Math.random() * stu_n)
+if (x.indexOf(i) > -1) {
+continue
+}
+x.push(i)
+}
+return x
+}
+function stringify_table(arr) {
+arr = [...arr]
+let unrolled = unroll(arr)
+const max_digit = Math.ceil(Math.log10(Math.max(...unrolled) + 1))
+for (let i = 0; i < arr.length; i++) {
+for (let j = 0; j < arr[i].length; j++) {
+if (arr[i][j]) {
+arr[i][j] = fill_zero(arr[i][j],max_digit)
+}
+}
+}
+return arr
+}
+function make_table(arr,rows,cols) {
+arr = [...arr]
+var _arr = []
+while (rows--) {
+let r = []
+let j = cols
+while (j--) {
+let x = arr.shift()||null
+r.push(x)
+}
+_arr.push(r)
+}
+if (arr.length) {
+setTimeout(() => {
+alert(`座位不足，${arr.length} 项无法被排序。(${arr})`)
+},0)
+}
+return _arr
+}
+function align_table(table,direction) {
+function _refine(arr) {
+var x = []
+var waste = []
+for (const i of arr) {
+if (i) {
+x.push(i)
+}
+else {
+waste.push(i)
+}
+}
+return {'product': x, 'waste': waste}
+}
+var _align = function(){}
+switch (direction) {
+case 'center':
+_align = function(x) {
+var y = x.waste.splice(0,Math.floor(x.waste.length / 2))
+y.push(...x.product)
+y.push(...x.waste)
+return y
+}
+break
+case 'left':
+_align = function(x) {
+var y = x.product
+y.push(...x.waste)
+return y
+}
+break
+case 'right':
+_align = function(x) {
+var y = x.waste
+y.push(...x.product)
+return y
+}
+break
+default:
+break
+}
+for (let i = 0; i < table.length; i++) {
+table[i] = _align(_refine(table[i]))
+}
+return table
+}
+function build_table() {
+if (!Page.result) {
+return 0
+}
+const row_n = + Page.row_set.value
+const col_n = + Page.col_set.value
+if (!row_n || !col_n) {
+alert('无法排序！')
+return clear_table()
+}
+const align_direction = Page.align_set.value
+const nd_set = + document.querySelector('#nd_set').value
+const table_el = Page.table
+const rows = []
+let table = Page.result
+table = make_table(table,row_n,col_n)
+table = align_table(table,align_direction)
+table = stringify_table(table)
+for (const i of table) {
+let tr = document.createElement('tr')
+for (const j of i) {
+let td = document.createElement('td')
+let div = document.createElement('div')
+let n = j || 0
+if (n == 0) {
+n = '-'
+}
+else if (n < nd_set) {
+td.classList.add('girl')
+}
+else if(n) {
+td.classList.add('boy')
+}
+div.innerText = n
+td.appendChild(div)
+tr.appendChild(td)
+}
+rows.push(tr)
+}
+table_el.innerHTML = ''
+table_el.append(...rows)
+Page.main.classList.add('present')
+return table
+}
+function spawn_table() {
+const stu_n = + document.querySelector('#stus').value
+Page.result = shuffle_students(stu_n)
+build_table()
+}
+function clear_table() {
+Page.table.innerHTML = ''
+Page.main.classList.remove('present')
+}
+const Page = {}
+window.onload = function() {
+Page.main = document.querySelector('main')
+Page.table = document.querySelector('table')
+Page.align_set = document.querySelector('#align')
+Page.row_set = document.querySelector('#rows')
+Page.col_set = document.querySelector('#cols')
+document.querySelector('#create').onclick = spawn_table
+document.querySelector('#clear').onclick = clear_table
+Page.align_set.onchange = build_table
+Page.row_set.onchange = build_table
+Page.col_set.onchange = build_table
+}
+</script>
+<style>
+body {
+background-color: rgb(20, 22, 24);
+color: white;
+font-size: 16px;
+user-select: none;
+}
+* {
+font-family: 'Microsoft YaHei';
+-webkit-tap-highlight-color: transparent;
+}
+main {
+margin-top: 5vmin;
+}
+.title {
+text-align: center;
+font-size: 32px;
+font-weight: bold;
+}
+select {
+color: white;
+font-size: 16px;
+}
+table {
+margin: auto;
+padding: 2.5vh 0;
+}
+td {
+--bg: rgb(96, 96, 96);
+padding: 1vh 1vw;
+}
+.girl {
+--bg: hsl(335, 82%, 50%);
+}
+.boy {
+--bg: hsl(208, 60%, 40%);
+}
+td > div {
+padding: 8px;
+background-color: var(--bg);
+border-radius: 3px;
+text-align: center;
+}
+.controls {
+padding: 2.5vh 0;
+}
+.btn-ctn {
+padding: 15px;
+}
+.btn-ctn, .btn-ctn > *  {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+margin: 4px 8px;
+}
+.btn-ctn input, .btn {
+border-radius: 10px;
+margin: 0 4px;
+padding: 8px 12px;
+}
+.btn-ctn > * > span {
+padding: 8px;
+}
+.btn {
+margin: auto;
+width: 100px;
+color: black;
+cursor: pointer;
+text-align: center;
+}
+.btn:hover {
+filter: brightness(0.9);
+}
+#create {
+background-color: lightgrey;
+}
+#clear {
+display: none;
+background-color: darkgrey;
+}
+main.present #clear {
+display: inherit !important;
+}
+input, select {
+border: 0;
+outline: 0;
+}
+.btn-ctn input {
+width: 20px;
+margin: 0;
+color: black;
+}
+.btn-ctn select {
+cursor: pointer;
+background-color: transparent;
+}
+.btn-ctn option {
+color: black;
+}
+@media screen and (max-width:500px){
+.btn-ctn {
+justify-content: left;
+}
+.btn-ctn > * {
+width: 100%;
+justify-content: left;
+}
+}
+</style></head>
+<body>
+<main>
+<div class="controls">
+<div class="title">座位表生成器</div>
+<div class="btn-ctn">
+<label title="学生总数">
+<span>STUDENTS</span>
+<input id="stus" type="text" value="46"/>
+</label>
+<label title="男生座号的第一位">
+<span>BREAK</span>
+<input id="nd_set" type="text" value="22"/>
+</label>
+<label title="行">
+<span>ROWS</span>
+<input id="rows" type="text" value="7"/>
+</label>
+<label title="列">
+<span>COLUMN</span>
+<input id="cols" type="text" value="7"/>
+</label>
+<div>
+<select id="align" title="对齐方式">
+<option value="left">靠左</option>
+<option selected="" value="center">居中</option>
+<option value="right">靠右</option>
+</select>
+</div>
+</div>
+<div>
+<div class="btn" id="create" title="创建">CREATE</div>
+</div>
+</div>
+<table></table>
+<div class="controls">
+<div>
+<div class="btn" id="clear" title="清除">CLEAR</div>
+</div>
+</div>
+</main>
+</body></html>

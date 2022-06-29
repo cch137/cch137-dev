@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin | {* appName *}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Admin">
+    <link rel="icon" href="/static/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/favicon.png" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/scrollbar.css">
+    <script src="../../js/cookie.js"></script> -->
+    <style>
+        body {
+            overflow: hidden;
+            user-select: none;
+        }
+        #hint {
+            margin: auto;
+            padding: 10px;
+        }
+        #hint > div > div {
+            --sz: 18px;
+            width: var(--sz);
+            height: var(--sz);
+            margin: 5px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.065);
+            border-radius: 5px;
+            font-size: var(--sz);
+            text-align: center;
+        }
+        #key {
+            width: 320px;
+            max-width: 80vw;
+            padding: 2vmin 2vmax;
+            border-radius: calc(2vmax / 2);
+            text-align: center;
+            letter-spacing: calc(var(--sz) / 8);
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid gray;
+        }
+        #current {
+            font-size: calc(var(--sz) / 2);
+        }
+        #enter{
+            margin: 2vh;
+            padding: 1vmin 1vmax;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: calc(2vmax / 4);
+            cursor: pointer;
+            align-self: center;
+            letter-spacing: calc(var(--sz) / 8);
+        }
+        #enter:hover {
+            background-color: rgba(255,255,255,0.15);
+        }
+        #home-btn {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translate(-100%,0);
+            margin: 2.5vh;
+            text-align: center;
+            opacity: 0.5;
+        }
+    </style>
+    <script>
+        const Page = {
+            hint: 0,
+            input: 0
+        }
+
+        function build_hint() {
+            const xhr = new XMLHttpRequest()
+            xhr.open('post','/d/admin-login-hint',false)
+            xhr.send()
+            Page.hint = xhr.responseText
+            Page.hint = [Page.hint.substring(0,Page.hint.length/2),Page.hint.substring(Page.hint.length/2,Page.hint.length)]
+            const hint_table = document.querySelector('#hint')
+            hint_table.innerHTML = ''
+            for (const i of Page.hint) {
+                const row = document.createElement('div')
+                row.classList.add('flex-center')
+                for (const j of i) {
+                    const el = document.createElement('div')
+                    el.innerText = j
+                    row.appendChild(el)
+                }
+                hint_table.appendChild(row)
+            }
+        }
+
+        function login() {
+            if (Page.input.value) {
+                const xhr = new XMLHttpRequest()
+                xhr.open('POST',`/admin/`,false)
+                xhr.setRequestHeader("Content-Type", "application/json")
+                xhr.send(JSON.stringify({
+                    cmd: 'login',
+                    hint: Page.hint,
+                    key: Page.input.value
+                }))
+                if (xhr.responseText) {
+                    DocCookies.setItem('admin',xhr.responseText,'','/')
+                    location = ''
+                }
+                else {
+                    Page.input.value = ''
+                    build_hint()
+                    Page.input.focus()
+                    alert('Incorrect key.')
+                }
+            }
+        }
+
+        function enter_key(e) {
+            if (e.key.toUpperCase() == 'ENTER') {
+                login()
+            }
+        }
+
+        window.onload = function() {
+            Page.input = document.querySelector('#key')
+            Page.input.onkeypress = enter_key
+            document.querySelector('#enter').onclick = login;
+            if (DocCookies.hasItem('admin')) {
+                DocCookies.removeItem('admin','/')
+            }
+            build_hint()
+        }
+    </script>
+</head>
+<body>
+    <div class="page-center flex-center">
+        <div>
+            <div id="hint"></div>
+            <div>
+                <input id="key" type="text" autocomplete="off" placeholder="ADMIN KEY" autofocus>
+            </div>
+            <div class="flex-center">
+                <div id="enter">ENTER</div>
+            </div>
+        </div>
+    </div>
+    <div id="home-btn">
+        <a href="/">HOME</a>
+    </div>
+</body>
+</html>

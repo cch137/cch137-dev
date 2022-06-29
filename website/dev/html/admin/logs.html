@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Logs | {* appName *}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="log">
+    <link rel="icon" href="/static/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/favicon.png" type="image/x-icon">
+    <script src="https://unpkg.com/vue/dist/vue.global.prod.js"></script>
+</head>
+<body>
+    <header>
+        <h1><a href="">LOGS</a></h1>
+        <div class="controls"><span><a href="javascript:build_logs()">刷新</a> <a href="javascript:expand_all()">展开全部</a> <a href="javascript:collapse_all()">收起全部</a> <a href="javascript:refresh_logs()">清除全部</a> <a href="/admin/">ADMIN</a> <a href="/">主页</a></span></div>
+    </header>
+    <div id="loading">Loading...</div>
+    <div id="view">
+        <details class="log" v-for="i in items">
+            <summary>
+                <span><time title="Timestamp" class="full_time">{{i.time.value}}</time><time title="Timestamp" class="short_time">{{i._time.value}}</time> <span title="Session ID" class="session" v-if="i.cookies">{{i.cookies.value.session}}</span> <span title="Method" class="method">{{i.method.value}}</span> <span title="Path" class="url">{{i.url.value}}</span> <span title="Status" class="status">{{i.status.value}}</span></span>
+            </summary>
+            <table>
+                <tr v-for="j in i" :class="j.key">
+                    <td>{{j.key}}</td>
+                    <td>
+                        <a v-if="['url','http_referer'].indexOf(j.key)>-1" :href="j.value" target="_blank">{{j.value}}</a>
+                        <span v-else>{{j.value}}</span>
+                    </td>
+                </tr>
+            </table>
+        </details>
+    </div>
+</body>
+</html>

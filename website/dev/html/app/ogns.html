@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" class="darkmode2">
+<head>
+    <title>Organisations | {* appName *}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="icon" href="/static/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/favicon.png" type="image/x-icon">
+    <script src="https://unpkg.com/vue/dist/vue.global.prod.js"></script>
+    <!-- <script src="../../js/app/ogns.js"></script>
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/scrollbar.css">
+    <link rel="stylesheet" href="../../css/app/ogns.css"> -->
+</head>
+<body>
+    <div id="list">
+        <div class="item flex-item" v-for="i in items">
+            <div class="namecard flex-item">
+                <img class="pf_pic" :src="'https://foonyew.edu.my'+i.v.shift()" draggable="false">
+                <h3 class="name">{{i.k}}</h3>
+            </div>
+            <div class="jobs flex-item">
+                <span class="job" v-for="j in i.v">{{j}}</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

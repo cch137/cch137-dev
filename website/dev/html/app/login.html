@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login | {*appName*}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Login">
+    <link rel="icon" href="/static/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/favicon.png" type="image/x-icon">
+</head>
+<body>
+    <main class="container page-center">
+        <form id="login" onsubmit="false">
+            <div class="title">WELCOME</div>
+            <input name="ea" type="email" placeholder="email address" autofocus>
+            <input name="pw" type="password" placeholder="password">
+            <span class="hint"><a id="forgot-pw">Forgot password?</a></span>
+            <input type="submit" value="LOG IN">
+            <span class="hint">Need an acount? <a id="btn-signup">Create new account</a></span>
+        </form>
+        <form id="verify" class="hidden" onsubmit="false">
+            <div class="title">SIGN UP</div>
+            <span class="hint">By signing up, you agree to the <a>Terms of Service and Privacy Policy</a>, including <a>Cookie Use</a>.</span>
+            <input name="ea" type="email" placeholder="email address">
+            <div class="hint">The verification code is only valid for 5 minutes, and you can only try to enter it 3 times at most. </div>
+            <input name="vc" type="text" placeholder="verification code" maxlength="4" pattern="[0-9]">
+            <div class="hint"><span class="sent-verify hidden">The verification code has been sent, please check your mailbox. </span><a id="btn-verify">Send verification code.</a></div>
+            <input class="sent-verify hidden" type="submit" value="VERIFY">
+            <div style="height:20px;" class="sent-verify-del"></div>
+            <span class="hint">Already have an account? <a id="btn-login1">Log in</a></span>
+        </form>
+        <form id="signup" class="hidden" onsubmit="false">
+            <div class="title">SIGN UP</div>
+            <section id="signup-sec1">
+                <span class="hint">at least 8 characters(a-z,A-Z,0-9 and _)</span>
+                <input name="text" type="text" placeholder="username" pattern="[\w]{8,}">
+                <input type="button" value="NEXT" id="signup-next1">
+                <span class="hint"><a id="signup-back1">Log in</a></span>
+            </section>
+            <section id="signup-sec2" class="hidden">
+                <span class="hint">at least 8 characters</span>
+                <input name="pw1" type="password"  pattern="[\S]{8,}" placeholder="password">
+                <span class="hint">reenter your password</span>
+                <input name="pw2" type="password"  pattern="[\S]{8,}" placeholder="comfirm password">
+                <input type="submit" value="SIGN UP">
+                <span class="hint"><a id="signup-back2">Back</a></span>
+            </section>
+        </form>
+    </main>
+</body>
+</html>

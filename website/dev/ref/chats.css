@@ -1,0 +1,106 @@
+body {
+    align-items: flex-start;
+    overflow: hidden;
+    user-select: none;
+}
+
+#chats-sidebar {
+    width: 25vw;
+    height: 100vh;
+    overflow-y: scroll;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#chats-sidebar-head {
+    background-color: var(--bg-head-1);
+    height: var(--headerH);
+    padding: 0 5px 0 10px;
+    font-family: var(--font-primary-headline);
+}
+
+#chats-sidebar-title {
+    flex: 1;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#chats-sidebar-btnlist a {
+    display: block;
+    height: 20px;
+    width: max-content;
+}
+
+.chats-sidebar-btn {
+    height: 100%;
+    width: 20px;
+    margin-left: 5px;
+}
+
+.chat-frame {
+    border: none;
+    width: 75vw;
+    height: 100vh;
+}
+
+@media screen and (max-width:500px){
+    #chatroom-list {
+        display: none;
+    }
+    .chat-frame {
+        width: 100vw;
+    }
+}
+
+.room-item {
+    width: auto;
+    height: 50px;
+    padding: 0 10px;
+    box-shadow: 0 0 1px gray;
+    text-decoration: none;
+}
+
+.room-item:hover {
+    background-color: rgb(40, 45, 45);
+}
+
+.onview {
+    background-color: rgb(42, 47, 47);
+}
+
+.room-item-name {
+    font-size: 20px;
+    flex: 1;
+}
+
+.room-item-code {
+    font-size: 12px;
+    color: gray;
+}
+
+@media screen and (max-width:1000px){
+    .room-item-code {
+        display: none;
+    }
+}
+
+.room-item-code::before {
+    content: '#';
+}
+
+.room-item-signal {
+    margin: 0 15px 0 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 10px;
+}
+
+.signal-on {
+    background-color: greenyellow;
+    border: white 0.5px double;
+}
+
+.signal-off {
+    background-color: brown;
+    border: grey 0.5px double;
+}

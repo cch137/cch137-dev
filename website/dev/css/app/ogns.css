@@ -1,0 +1,68 @@
+body {
+    overflow-x: hidden;
+}
+
+#list {
+    visibility: hidden;
+    max-width: max-content;
+    padding: auto;
+    margin: auto;
+    align-items: center;
+}
+
+#list[data-v-app] {
+    visibility: visible;
+}
+
+.item {
+    max-width: 800px;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: rgba(225, 225, 225, 0.025);
+}
+
+.item:hover {
+    background-color: rgba(225, 225, 225, 0.05);
+}
+
+.flex-item {
+    display: flex;
+    align-items: center;
+}
+
+.name {
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+.pf_pic {
+    height: 80px;
+    border-radius: 10px;
+}
+
+.jobs {
+    padding: 5px;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.job {
+    margin: 2px;
+    padding: 4px 8px;
+    background-color: rgba(225, 225, 225, 0.1);
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+@media screen and (max-width:500px) {
+    .item {
+        display: block;
+    }
+    .name {
+        font-size: 24px;
+    }
+    .jobs {
+        padding: 4px 0;
+    }
+}

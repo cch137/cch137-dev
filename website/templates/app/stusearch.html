@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>学生资料查询 | {* appName *}</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<meta content="世界级学生资料查询中心" name="description"/>
+<meta content="/static/favicon.png" property="og:image"/>
+<link href="/static/favicon.png" rel="icon" type="image/x-icon"/>
+<link href="/static/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+<script src="/static/pack/mxJK.js"></script><link href="/static/pack/tp9N.css" rel="stylesheet"/></head>
+<body>
+<div class="blur" id="container">
+<header class="flex-center">
+<div style="text-align:left;">
+<a href="/" id="home-btn">主页</a>
+</div>
+<a href="" id="app-name">学生资料查询</a>
+<div style="text-align:right;">
+<a href="javascript:alert('暂未开放')" id="adv-btn">进阶搜索</a>
+</div>
+</header>
+<div id="inner-container">
+<div class="flex-center" id="search-input">
+<input id="search-btn" src="/static/icons/search.png" type="image"/>
+<input autocomplete="off" autofocus="" id="search-box" placeholder="搜索" type="text"/>
+</div>
+<div style="padding:10px 0;text-align:center;">搜索结果：<span id="result-count"></span></div>
+<div id="search-result-container">
+<div id="search-result-list"></div>
+<div class="hidden" id="search-result-hidden"></div>
+</div>
+</div>
+</div>
+<div class="flex-center page-center" id="msgbox">Loading...</div>
+</body>
+</html>

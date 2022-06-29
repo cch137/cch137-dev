@@ -1,0 +1,368 @@
+:root {
+    --main-color: white;
+    --selected-color: rgba(255, 255, 255, 0.2);
+    --bg-default: rgb(20, 22, 24);
+    --bg-panel: rgb(28, 30, 32);
+    --bg-message: rgb(34, 36, 38);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-default);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    font-family: var(--default-font);
+}
+
+.faded {
+    opacity: 0;
+    pointer-events: none;
+    transition: all 2s;
+}
+
+.scroll-detect {
+    --size: 100px;
+    --init-color: rgba(0, 0, 0, calc(1/3));
+    --final-color: transparent;
+    position: fixed;
+    background-color: transparent;
+    background-image: none;
+}
+#top-scroll,#bottom-scroll {
+    height: var(--size);
+    width: 100vw;
+}
+#top-scroll:hover,#bottom-scroll:hover {
+    background-image: linear-gradient(var(--init-color),var(--final-color));
+}
+#top-scroll {
+    top: 0;
+    left: 0;
+}
+#bottom-scroll {
+    bottom: 0;
+    left: 0;
+    transform: rotate(180deg);
+}
+#left-scroll,#right-scroll {
+    height: 100vh;
+    width: var(--size);
+}
+#left-scroll:hover,#right-scroll:hover {
+    background-image: linear-gradient(to right,var(--init-color),var(--final-color));
+}
+#left-scroll {
+    top: 0;
+    left: 0;
+}
+#right-scroll {
+    top: 0;
+    right: 0;
+    transform: rotate(180deg);
+}
+
+#player {
+    --size: 30px;
+    background-color: khaki;
+    width: var(--size);
+    height: var(--size);
+    border-radius: var(--size);
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%,-50%);
+}
+
+.key {
+    filter: brightness(0.6);
+}
+
+.isNarrowScreen .key {
+    display: none;
+}
+
+#panel {
+    width: 320px;
+    max-width: 80vw;
+    height: 60vh;
+    position: fixed;
+    padding: 15px;
+    right: 60px;
+    top: 50%;
+    transform: translate(0,-50%);
+    background-color: var(--bg-panel);
+    border-radius: 20px;
+}
+
+#panel .item {
+    display: flex;
+    padding: 3px;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+#panel > .item > .data {
+    padding: 3px;
+    opacity: 0.9;
+    flex: 1;
+    outline: none;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#panel > .item > .data[contenteditable='true']:hover,
+#panel > .item > .data[contenteditable='true']:empty {
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+#panel > .item > .data[contenteditable='true']:focus {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+#panel .save-btn {
+    cursor: pointer;
+    padding: 3px 12px;
+}
+
+#panel .btn {
+    user-select: none;
+    opacity: 0.5;
+}
+
+#panel .btn:hover {
+    opacity: 0.75;
+}
+
+#panel > #close-btn-bar {
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%,0);
+    text-align: center;
+}
+
+#panel > #close-btn-bar > #close-btn {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#panel > #controls {
+    user-select: none;
+    margin-top: 10px;
+}
+
+#panel > #controls > ul {
+    margin: 0;
+    padding: 0;
+}
+
+#panel > #controls > .control {
+    cursor: pointer;
+    background-color: var(--bg-panel);
+    opacity: 0.75;
+}
+
+#panel > #controls > .control:hover {
+    opacity: 0.9;
+    filter: brightness(1.5);
+}
+
+#message-box {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 400px;
+    max-width: 80vw;
+    max-height: 40vh;
+    transform: translate(-50%,-50%);
+    background-color: var(--bg-message);
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+#message-box-ok {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%,0);
+    width: 100px;
+    padding: 10px;
+    cursor: pointer;
+    opacity: 0.75;
+    background-color: var(--bg-message);
+    text-align: center;
+}
+
+#message-box-ok:hover {
+    filter: brightness(1.5);
+    opacity: 0.9;
+}
+
+.window {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.window.play {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#map {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+    justify-content: left;
+    align-items: flex-start;
+    overflow: hidden;
+    user-select: none;
+    transition: all 2s;
+}
+
+#map.inactive {
+    filter: blur(3px);
+    pointer-events: none;
+}
+
+.map-col {
+    flex-direction: column-reverse;
+}
+
+.map-col, .block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width:500px){
+    #map {
+        overflow: auto;
+    }
+    .scroll-detect {
+        display: none;
+    }
+    #panel {
+        top: 50%;
+        left: 50%;
+        right: auto;
+        transform: translate(-50%,-50%);
+    }
+}
+
+.block {
+    --block-size: 50px;
+    height: var(--block-size);
+    width: var(--block-size);
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s;
+}
+
+.block:hover {
+    filter: brightness(1.1);
+}
+
+.block.selected {
+    border: 3px solid rgba(215, 215, 215, 0.5);
+    filter: brightness(1.2);
+}
+
+.block.fog {
+    background-color: var(--bg-default);
+}
+
+.block.fog:hover {
+    filter: brightness(1.5);
+}
+
+.block.fog.selected {
+    border: 3px solid rgba(128, 128, 128, 0.25);
+    filter: brightness(2);
+}
+
+.block.grass {
+    background-color: #8AB863;
+}
+
+.block.water {
+    background-color: dodgerblue;
+}
+
+.block.dirt {
+    background-color: rgb(103, 79, 43);
+}
+
+.apple {
+    --size: 25px;
+    height: var(--size);
+    width: var(--size);
+    border-radius: var(--size);
+    background-color: firebrick;
+    border: 1px solid darkred;
+}
+
+/* STANDARD */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+}
+
+body,input,select {
+    font-size: var(--sz);
+    color: var(--main-color);
+    font-family: var(--main-font-family);
+}
+
+input,select {
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+input::placeholder {
+    color: inherit;
+    opacity: 0.5;
+}
+
+input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: transparent;
+    transition: all 1000s ease-in-out 0s;
+}
+
+a {
+    color: inherit;
+}
+
+.flex-center {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+::-moz-selection {
+    background: var(--selected-color);
+}
+::selection {
+    background: var(--selected-color);
+}

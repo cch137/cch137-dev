@@ -1,0 +1,69 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("/static/font/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+@font-face {
+    font-family: "NotoSansTC";
+    src: url("/static/font/Noto_Sans_TC/NotoSansTC-Regular.otf") format("opentype");
+    font-display: swap;
+}
+@font-face {
+    font-family: "NotoSansSC";
+    src: url("/static/font/Noto_Sans_SC/NotoSansSC-Regular.otf") format("opentype");
+    font-display: swap;
+}
+
+body {
+    --sz: 15vmin;
+    background-color: black;
+    color: white;
+    user-select: none;
+}
+
+body,input,select {
+    font-family: 'Roboto', 'NotoSansTC', 'NotoSansSC', 'SimHei', sans-serif;
+}
+
+#game {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+#info {
+    padding: calc(var(--sz) * 0.1);
+    font-size: calc(var(--sz) * 0.35);
+    text-align: center;
+}
+
+#board {
+    margin: auto;
+    width: max-content;
+    border-collapse: collapse;
+    border: 1px solid grey;
+}
+
+.row {
+    display: flex;
+}
+
+.block {
+    height: var(--sz);
+    width: var(--sz);
+    border: 1px solid grey;
+    background-color: rgba(255, 255, 255, 0.075);
+    text-align: center;
+    line-height: var(--sz);
+    font-size: calc(var(--sz) * 0.8);
+    cursor: pointer;
+}
+
+.block.marked {
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: default;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}

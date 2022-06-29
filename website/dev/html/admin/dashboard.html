@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" class="darkmode2">
+<head>
+    <title>{* appName *}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Powered by LSK">
+    <meta property="og:image" content="/static/favicon.png">
+    <link rel="icon" href="/static/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/favicon.png" type="image/x-icon">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+</head>
+<body class="sidebar-collapse">
+    <div id="bg"></div>
+    <div id="header" class="flex-center">
+        <div class="header-left">
+            <img id="menu-btn" class="header-widget header-icon" src="/static/icons/menu.png">
+        </div>
+        <div class="header-center">
+            <div id="app-name">{* appName *}</div>
+        </div>
+        <div class="header-right">
+            <a id="user-card" href="/login" class="header-widget header-icon">
+                <img class="header-icon" src="/static/icons/acc.png">
+                <div>登录</div>
+            </a>
+        </div>
+    </div>
+    <div id="container" class="hidden">
+        <div id="sidebar-container">
+            <div id="sidebar">
+                <div href="home">首页</div>
+                <div href="articles">文章</div>
+                <div href="search">资料查询</div>
+                <div href="profile">个人主页</div>
+            </div>
+            <div class="signature">
+                <a href="/admin/">
+                    <script>
+                        document.write(`© ${new Date().getFullYear()} 壹叁柒`);
+                        const x = document.currentScript;
+                        x.parentNode.removeChild(x);
+                    </script>
+                </a>
+            </div>
+        </div>
+        <div id="inner-container">
+            <div id="content">
+                <div>
+                    <div class="block post">
+                        <div>Post</div>
+                        <div>
+                            https://m.facebook.com/story.php?story_fbid=10154418636637574&id=182023297573
+                        </div>
+                        <div>
+                            https://m.facebook.com/story.php?story_fbid=10154534083377574&id=182023297573
+                        </div>
+                        <div>
+                            https://m.facebook.com/story.php?story_fbid=10154692489067574&id=463269502573
+                        </div>
+                        <div>
+                            https://www.sinchew.com.my/?p=3221685
+                        </div>
+                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. www.google.com Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                        <div>
+                            参考
+                        </div>
+                        <div>
+                            https://qianling.pw/
+                        </div>
+                        <div>
+                            https://hin.cool/
+                        </div>
+                        <div>
+                            Billing
+                        </div>
+                        <div>
+                            https://dashboard.heroku.com/account/billing
+                        </div>
+                    </div>
+                    <div class="block">
+                        <div>
+                            链接
+                        </div>
+                        <a href="/tools/cryp">
+                            加密
+                        </a>
+                    </div>
+                    <div class="block">
+                        <div>
+                            Welcome
+                        </div>
+                        <audio id="dog_eyes" src="/static/audios/gives dog eats your eyes.mp3" controls></audio>
+                    </div>
+                </div>
+                <div>
+                    <div class="block">
+                        <div>文章</div>
+                        <div>寬中論壇</div>
+                        <div>
+                            <a href="javascript:minifyTemplates()">refresh</a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div id="data-loading" style="cursor:pointer;opacity:0.5;">点击加载数据</div>
+                    <div>
+                        <div id="search-box-container">
+                            <div>
+                                <input id="search-btn" type="image" src="/static/icons/search.png">
+                                <input id="search-box" type="text" placeholder="搜索" autocomplete="off">
+                            </div>
+                            <div id="search-selects"></div>
+                        </div>
+                    </div>
+                    <div id="search-result-list"></div>
+                    <div id="search-result-hidden" class="hidden"></div>
+                    <script>
+                        function getKey() {
+                            return DocCookies.getItem('admin')
+                        }
+                        function minifyTemplates() {
+                            const x = new XMLHttpRequest
+                            x.open('post',`/admin/minify-templates?key=${getKey()}`,true)
+                            x.onerror = function() {
+                                console.log('Minify templates failed.')
+                            }
+                            x.onload = function() {
+                                console.log((new Date).toLocaleString(),'Templates minified successfully.')
+                                document.location = document.location
+                            }
+                            x.send()
+                        }
+                    </script>
+                </div>
+                <div>
+                    <div class="block">
+                        <div>Profile</div>
+                        <div>
+                            <a href="javascript:minifyTemplates()">refresh</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,265 @@
+:root {
+    --bg-color-semi: rgb(10, 12, 14, 0.95);
+    --hd-bg-color: rgb(0, 0, 0);
+    --main-color: white;
+    --main-color-85: rgba(255, 255, 255, 0.85);
+    --main-color-55: rgba(255, 255, 255, 0.55);
+    --selected-color: rgba(255, 255, 255, 0.2);
+    --header-h: 85px;
+    --view-width: 80vw;
+    --view-max-width: 1000px;
+}
+
+body {
+    margin: 0;
+    color: var(--main-color);
+    height: 100vh;
+    overflow: hidden;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+header {
+    display: flex;
+    position: fixed;
+    z-index: 1;
+    height: var(--header-h);
+    width: calc(100% - var(--scrollbar-size));
+    overflow-x: auto;
+    overflow-y: hidden;
+    align-items: center;
+    user-select: none;
+    transition: all 0.5s;
+    background-color: var(--hd-bg-color);
+}
+
+header::-webkit-scrollbar {
+    display: none;
+}
+
+header.collapse {
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+header > h1 > a {
+    margin: 0;
+    padding: 0 2vw 0 8vw;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    text-decoration: none !important;
+}
+
+nav > ol {
+    display: flex;
+    /* margin: 0; */
+    flex-wrap: nowrap;
+}
+
+nav > ol > li::marker {
+    content: none;
+}
+
+nav > ol > li {
+    --dec-color: rgb(185, 255, 255);
+    position: relative;
+    flex: 1;
+    padding: 2px;
+    margin: 12px 24px;
+    font-size: 18px;
+    color: var(--main-color-55);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+nav > ol > li:hover {
+    color: var(--main-color);
+}
+
+nav > ol > li.active {
+    color: white;
+    text-shadow: 0 0 1px white;
+}
+
+nav > ol > li:after {
+    content:'';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background-color: var(--dec-color);
+    transform: scaleX(0);
+    transform-origin: bottom right; /* 结束往哪里收缩*/
+    transition: transform 0.2s;
+}
+
+nav > ol > li:hover::after, nav > ol > li.active:after {
+    transform-origin: bottom left;
+    transform: scaleX(1);
+}
+
+#view {
+    padding: 100px 0;
+    opacity: 0;
+    margin: auto;
+    width: var(--view-width);
+    max-width: var(--view-max-width);
+    color: var(--main-color-85);
+}
+
+#view.active {
+    opacity: 1;
+    transition: all 0.5s ease-out;
+    /* animation: bounceInLeft 1s cubic-bezier(0.215, 0.61, 0.355, 1) 0s 1 alternate forwards;
+    -webkit-animation: bounceInLeft 1s cubic-bezier(0.215, 0.61, 0.355, 1) 0s 1 alternate forwards; */
+}
+
+.tab {
+    width: 100%;
+}
+
+.tab img {
+    width: 100%;
+}
+
+.block {
+    padding-bottom: 20px;
+}
+
+.rendered {
+    text-align: justify;
+    /* text-justify: inter-word; */
+}
+
+#tabs {
+    display: none;
+}
+
+.links-list {
+    --pd: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    user-select: none;
+}
+
+.links-list > * {
+    margin: var(--pd);
+    flex: 1;
+}
+
+@media screen and (max-width:800px){
+    .links-list {
+        --pd: 5px;
+        display: block;
+    }
+    .links-list > * {
+        padding: 0;
+    }
+}
+
+.link-banner {
+    --h: 160px;
+    min-width: calc(var(--h) * 2) !important;
+    display: block;
+    height: var(--h);
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.link-banner > .bg {
+    --bg-color: rgba(75, 75, 75);
+    height: var(--h);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: var(--bg-url);
+    background-color: var(--bg-color);
+    filter: brightness(0.4);
+}
+
+.link-banner > .content {
+    position: relative;
+    margin: 0;
+    top: calc(-0.5 * var(--h));
+    transform: translate(0,-50%);
+    text-align: center;
+    pointer-events: none;
+}
+
+.link-banner > .content * {
+    margin: 0;
+}
+
+.link-banner:hover > .bg {
+    filter: brightness(0.3);
+}
+
+.link-banner:hover {
+    text-shadow: 0 0 5px black;
+}
+
+.mini {
+    font-size: 12px;
+}
+
+#link-search {
+    --h: 160px;
+    --bg-url: url('/static/images/app/search-bg.jpg');
+}
+
+#link-drive {
+    --h: 160px;
+    --bg-url: url('/static/images/app/drive-bg.jpg');
+}
+
+@keyframes bounceInLeft {
+    0% {
+        opacity: 0;
+        transform: translate3d(-100vw, 0, 0);
+    }
+    60% {
+        opacity: 1;
+        transform: translate3d(-25px, 0, 0);
+    }
+    75% {
+        transform: translate3d(-10px, 0, 0);
+    }
+    90% {
+        transform: translate3d(-5px, 0, 0);
+    }
+    100% {
+        transform: none;
+    }
+}
+
+@media screen and (max-width:500px){
+    :root {
+        --view-width: 90vw;
+    }
+}
+
+.hover-rotate {
+    -webkit-transition: filter 375ms ease-in 0.2s, -webkit-transform 0.3s;
+    -moz-transition: filter 375ms ease-in 0.2s, -moz-transform 0.3s;
+    -o-transition: filter 375ms ease-in 0.2s, -o-transform 0.3s;
+    -ms-transition: filter 375ms ease-in 0.2s, -ms-transform 0.3s;
+    transition: filter 375ms ease-in 0.2s, transform 0.3s;
+}
+
+.hover-rotate:hover {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>{* student *} | {* appName *}</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<meta content="Student" name="description"/>
+<link href="/static/favicon.png" rel="icon" type="image/x-icon"/>
+<link href="/static/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+<script src="https://unpkg.com/vue/dist/vue.global.prod.js"></script>
+<script src="/static/pack/0tpq.js"></script><link href="/static/pack/8AGZ.css" rel="stylesheet"/></head>
+<body>
+<data>{* student *}</data>
+<div class="v block" id="namecard">
+<table>
+<tr v-for="i in info">
+<td>{{ i.key }}</td>
+<td>{{ i.value }}</td>
+</tr>
+</table>
+<table>
+<tr v-for="i in group">
+<td>{{ i.key }}</td>
+<td v-for="j in i.value">{{ j }}</td>
+</tr>
+</table>
+</div>
+<div class="v block" id="results">
+<hr/>
+<div v-for="i in results">
+<h1>{{ i.year }}</h1>
+<table class="info-card">
+<tr v-for="j in i.info">
+<td>{{ j.key }}</td>
+<td :colspan="j.colspan" v-for="k in j">{{ k }}</td>
+</tr>
+</table>
+<table class="report-card table-view">
+<tr v-for="j in i.rep">
+<td v-for="k in j">{{ k }}</td>
+</tr>
+</table>
+<table class="attd-card table-view">
+<tr v-for="j in i.att">
+<td v-for="k in j">{{ k }}</td>
+</tr>
+</table>
+<hr/>
+</div>
+</div>
+</body>
+</html>

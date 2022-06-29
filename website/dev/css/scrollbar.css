@@ -1,0 +1,33 @@
+/* scrollbar */
+:root {
+    --scrollbar-size: 10px;
+    --view-width: 90vw;
+}
+
+::-webkit-scrollbar {
+    height: var(--scrollbar-size);
+    width: var(--scrollbar-size);
+}
+
+::-webkit-scrollbar-corner {
+    background: rgb(255, 255, 255, 0.15);
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.175);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+@media screen and (max-width:500px){
+    :root {
+        --scrollbar-size: 5px;
+        --view-width: 90vw;
+    }
+}

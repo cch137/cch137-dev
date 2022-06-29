@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+
+:root {
+    --default-font: 'Roboto', 'Noto Sans SC', 'Noto Sans TC', 'Microsoft YaHei';
+}
+:root {
+    --hd-height: 60px;
+    --selected-color: rgb(0, 135, 225);
+}
+
+body,html {
+    overflow: hidden;
+    user-select: none;
+}
+
+body,html,h1,h2,h3 {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    font-family: var(--default-font);
+    -webkit-tap-highlight-color: transparent;
+}
+
+header,.item  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    padding: 0 10px;
+    background-color: rgb(240, 240, 240);
+    height: var(--hd-height);
+}
+
+header > * {
+    flex: 1;
+}
+
+#appname {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+header a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#container {
+    --view-w: 60%;
+    --sidebar-w: 15%;
+    --infobar-w: 25%;
+    --sidebar-pd: 10px;
+    --infobar-pd: 10px;
+    display: flex;
+    height: calc(100vh - var(--hd-height));
+}
+
+#sidebar,#view,#infobar {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-shadow: 0 0 1px darkgray;
+}
+
+#sidebar,#infobar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#sidebar {
+    width: var(--sidebar-w);
+    padding: var(--sidebar-pd);
+}
+
+#infobar {
+    width: var(--infobar-w);
+    padding: var(--infobar-pd);
+}
+
+#view {
+    opacity: 0;
+    width: var(--view-w);
+    pointer-events: none;
+}
+
+#view[data-v-app] {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.item {
+    position: relative;
+    height: 40px;
+    width: auto;
+    padding: 0 10px;
+    overflow: hidden;
+    justify-content: left;
+    text-align: left;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    outline: 0.5px solid rgba(211, 211, 211, 0.5);
+    cursor: pointer;
+}
+
+.item.selected {
+    color: var(--selected-color);
+    background-color: rgba(173, 216, 230, 0.2);
+}
+
+.item > .details {
+    padding: 0 20px;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+#file_menu {
+    display: none;
+    position: absolute;
+    padding: 10px 0;
+    border-radius: 4px;
+    background-color: white;
+    color: black;
+    box-shadow: 0 2px 8px grey;
+}
+
+#file_menu > * {
+    padding: 5px 15px;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+#file_menu > *:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+#file_menu.opened {
+    display: block;
+    left: var(--x);
+    top: var(--y);
+}
+
+#upload {
+    --sz: 50px;
+    position: absolute;
+    bottom: 50px;
+    right: calc(50px + var(--infobar-w));
+    height: var(--sz);
+    width: var(--sz);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 100px;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: rgb(235, 235, 235);
+    box-shadow: 0 0 1px darkgray;
+    color: rgb(0, 105, 185);
+    cursor: pointer;
+}
+
+#upload:hover {
+    filter: brightness(0.975);
+}
+
+#upload > form {
+    display: none;
+}
+
+/* scrollbar */
+:root {
+    --scrollbar-size: 1vw;
+}
+
+::-webkit-scrollbar {
+    height: var(--scrollbar-size);
+    width: var(--scrollbar-size);
+}
+
+::-webkit-scrollbar-corner {
+    background: rgba(225, 225, 225);
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(235, 235, 235);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(200, 200, 200);
+    border: calc(var(--scrollbar-size) / 6) solid rgba(235, 235, 235);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(185, 185, 185);
+}
+
+@media screen and (max-width:500px){
+    #container {
+        --sidebar-w: 0px;
+        --infobar-w: 0px;
+        --sidebar-pd: 0px;
+        --infobar-pd: 0px;
+        --view-w: 100%;
+    }
+}
+

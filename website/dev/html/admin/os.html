@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{*appName*}/{*path*}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Admin">
+    <link rel="icon" href="/static/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/favicon.png" type="image/x-icon">
+</head>
+<body>
+    <data id="data">{*data|safe*}</data>
+    <div>
+        <a href="/admin/logout">Logout</a>
+        <br>
+        <a href="javascript:minifyTemplates()">Minify</a>
+        <br>
+        <a href="javascript:push_heroku_master()">Push</a>
+        <br>
+        <a href="/">Home</a>
+        <br>
+    </div>
+    <div id="container">
+        <div id="pathname"></div>
+        <div id="view"></div>
+    </div>
+</body>
+</html>

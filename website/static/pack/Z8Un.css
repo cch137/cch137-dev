@@ -1,0 +1,21 @@
+html {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+body {
+    background-color: black;
+}
+
+.cell {
+    --size: 2px;
+    position: absolute;
+    top: calc(100vh * var(--y));
+    left: calc(100vw * var(--x));
+    background-color: var(--color);
+    transform: translate(-50%, -50%);
+    height: var(--size);
+    width: var(--size);
+    border-radius: var(--size);
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>{* appName *}</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<meta content="The space of LEI137" name="description"/>
+<meta content="LEI137, space" name="keywords"/>
+<meta content="LEI137" name="author"/>
+<meta content="{* appName *}" property="og:title"/>
+<meta content="The space of LEI137" property="og:description"/>
+<meta content="/static/cover.png" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="/static/favicon.png" rel="icon" type="image/x-icon"/>
+<link href="/static/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+<script src="https://unpkg.com/vue/dist/vue.global.prod.js"></script>
+<script src="/static/pack/H_XU.js"></script><link href="/static/pack/ZxR_.css" rel="stylesheet"/></head>
+<body>
+<div id="container">
+<header>
+<h1><a href="/" rel="noopener noreferrer">{* appName *}</a></h1>
+<nav>
+<ol>
+<li href="home">HOME</li>
+<li href="tools">TOOLS</li>
+<li href="links">LINKS</li>
+<li href="about">ABOUT</li>
+</ol>
+</nav>
+</header>
+<div id="view"></div>
+<div id="tabs">
+<div class="tab">
+<div class="links-list" id="home-links">
+<div v-for="i in items">
+<a :href="i.href" :id="i.id" :target="i.newtab?'_blank':'_self'" class="link-banner" rel="noopener noreferrer">
+<div :style="'--bg-color:'+random_rgb(75,215)" class="bg"></div>
+<div class="content">
+<h1>{{ i.title }}</h1>
+<div class="mini">{{ i.des }}</div>
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="tab">
+<ol id="tools">
+<li v-for="i in items">
+<a :href="i.link" rel="noopener noreferrer" target="_blank" v-if="i.newtab">
+<h1>{{ i.title }}</h1>
+<div>{{ i.des || '' }}</div>
+</a>
+<a :href="i.link" rel="noopener noreferrer" v-else="">
+<h1>{{ i.title }}</h1>
+<div>{{ i.des || '' }}</div>
+</a>
+</li>
+</ol>
+</div>
+<div class="tab">
+<h1>Links</h1>
+<div class="unrendered">
+<div>https://g0.netlify.app/ Chat</div>
+<div>http://localhost:8000/ localhost:8000</div>
+<div>https://www.notion.so/cch137/8e8731949e3c4ddc90d6212c4ca869b0 HOME</div>
+<div>https://www.notion.so/cch137/5ea27588f8d4450eb2a6b18136b7567c LIBRARY</div>
+<div>https://www.notion.so/cch137/1fd67bbfeebc45b5b46ac02bd0550ac8 素材库</div>
+<div>https://www.notion.so/cch137/0242f9618e504fcd8872fff96c0ae1b2 137's</div>
+<div>https://www.youtube.com/ Youtube</div>
+<div>https://mail.google.com/mail/u/0/#inbox Gmail</div>
+<div>https://classroom.google.com/u/0/h Classroom</div>
+<div>https://drive.google.com/drive/my-drive Drive</div>
+<div>https://meet.google.com/u/0/ Meet</div>
+<div>https://calendar.google.com/calendar/u/0/r Calendar</div>
+<div>https://drive.google.com/drive/folders/1dIsrX65muLXzhpZwxks1KXKgeMvn8oWR 中间站</div>
+<div>https://elearning.dongzong.my/course/view.php?id=81&amp;username=2040r03&amp;password=W%212369t DZ E-Learning</div>
+<div>https://mubu.com/app/edit/home 幕布</div>
+<div>https://fanyi.sogou.com/text 搜狗翻译</div>
+<div>https://translate.google.com/ Translate</div>
+<div>https://www.geogebra.org/calculator Geogebra</div>
+<div>https://www.wolframalpha.com/ Wolframalpha</div>
+<div>http://dictionary.cambridge.org/zhs 剑桥词典</div>
+<div>https://zh.wikiversity.org/wiki/ 维基学院</div>
+<div>https://www.y2mate.com/en31/youtube-mp3 Youtube to MP3</div>
+<div>https://www.facebook.com/messages/t/ Messenger</div>
+<div>https://web.whatsapp.com/ Whatsapp</div>
+<div>https://outlook.live.com/mail/0/ Outlook</div>
+<div>https://www.foonyew.edu.my/ 资讯网</div>
+<div>https://e.foonyew.edu.my/ Moodle</div>
+<div>https://sso.foonyew.edu.my/?page=2 SSO</div>
+<div>https://www.notion.so/cch137/f0f0d47e587f4e7586e340821a19aa9c CODE</div>
+<div>https://www.notion.so/cch137/643bd16ed32144d4b66082821ba2c9c7 Python</div>
+<div>https://www.notion.so/cch137/c9f19cfa05a9467e9a97df78ce77e817 JS</div>
+<div>https://www.notion.so/cch137/9d1f4dbb6aaa4c90af0ce071e4217500 HTML</div>
+<div>https://www.notion.so/cch137/3326194069674d33a56f3ddec2cb94bc CSS</div>
+<div>https://docs.google.com/spreadsheets/d/1OGcvBmpq50anarg3eNFgB4i5KS6ltVLb6hI55K38fa4/ Schedule UI</div>
+<div>https://docs.google.com/spreadsheets/d/16jCAp_4opQNz8IsqdUyXQD4ns2tfWZ_Sop3tUs32rl0/ Schedule DB</div>
+<div>https://docs.google.com/spreadsheets/d/1M7eldvFSxLKbfFeIlyvsey66rRiJH74tdlEpsZ6r6jc/ Studb</div>
+<div>https://docs.google.com/spreadsheets/d/1eAW0Nt3Y8zTf3Getmmjlwx1MxmCyW6lZdwC4FfDjlcY/ 137 工具箱</div>
+<div>https://137db.netlify.app/p/tlf/ TLF</div>
+<div>https://137db.netlify.app/p/psh/ PSH</div>
+<div>https://g0.netlify.app/ 137</div>
+<div>https://www.fiverr.com/ Fiverr</div>
+<div>http://localhost:9000/i137/ Localhost</div>
+<div>https://i137.netlify.com/ Netlify</div>
+<div>https://app.netlify.com/sites/i137/deploys Deploys</div>
+<div>https://rebrand.ly/r1ckr0l13r RR</div>
+</div>
+<h1>References</h1>
+<div class="unrendered">
+<div>https://blog.zhheo.com/ 分类、方块</div>
+<div>https://zendee.cn/ 帖子列表</div>
+<div>https://www.cxmoe.com/ 封面</div>
+<div>https://qianling.pw/ https://akilar.top/ 萝莉</div>
+<div>https://hin.cool/ 友链</div>
+<div>https://dashboard.heroku.com/account/billing Heroku-Billing</div>
+</div>
+</div>
+<div class="tab">
+<h1>About</h1>
+<a href="/login" target="_blank">LOG IN</a>
+</div>
+</div>
+</div>
+</body>
+</html>

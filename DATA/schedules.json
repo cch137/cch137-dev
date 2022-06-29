@@ -1,0 +1,74 @@
+{
+    "S3S3": {
+        "classname": "高三理三",
+        "table": [
+            ["序", "时间", "星期一", "星期二", "星期三", "星期四", "星期五", "快捷链接"],
+            ["1", "07:30 - 08:10", "英文", "数学", "生物", "英文", "华文", "Moodle"],
+            ["2", "08:15 - 08:55", "英文", "数学", "生物", "国文", "国文", "Classroom"],
+            ["3", "09:00 - 09:40", "化学", "生物", "国文", "国文", "数学", "Drive"],
+            ["4", "10:00 - 10:40", "数学", "华文", "华文", "华文", "体育", ""],
+            ["5", "10:45 - 11:25", "数学", "英文", "华文", "化学", "物理", "电脑协会"],
+            ["6", "11:45 - 12:25", "国文", "物理", "数学", "生物", "周/班", "电子木工协会"],
+            ["7", "12:30 - 13:05", "华文", "物理", "化学", "物理", "生物", "时事研究社"],
+            ["8", "13:50 - 14:25", "生物", "化学", "物理", "数学", "化学", ""],
+            ["9", "14:30 - 15:05", "物理", "化学", "英文", "数学", "英文", "逻辑推理"],
+            ["10", "15:20 - 15:55", "", "", "", "", "选修课", "高数统考"],
+            ["11", "16:00 - 16:35", "", "", "", "", "选修课", ""]
+        ],
+        "links": {
+            "华文": "https://meet.google.com/lookup/liaufongee",
+            "国文": "https://meet.google.com/lookup/yiangleelang",
+            "英文": "https://meet.google.com/lookup/audreylinjieyun",
+            "数学": "https://meet.google.com/lookup/yongpaufong",
+            "物理": "https://meet.google.com/lookup/tengleefoon",
+            "化学": "https://meet.google.com/lookup/tanyengkian",
+            "生物": "https://meet.google.com/lookup/ngyeoklan",
+            "体育": "https://meet.google.com/lookup/teeweiyi",
+            "周/班": "https://meet.google.com/lookup/yongpaufong",
+            "选修课": "https://docs.google.com/spreadsheets/d/1esEFaXoXQO0eTOAjCN0-d7MWEEHQVPvDYgZElEty7lo/",
+            "Moodle": "https://e.foonyew.edu.my",
+            "Classroom": "https://classroom.google.com",
+            "Drive": "https://drive.google.com",
+            "电脑协会": "https://meet.google.com/jsv-ghrm-qju",
+            "电子木工协会": "https://meet.google.com/lookup/bhtyf2tcs5",
+            "时事研究社": "https://meet.google.com/lookup/tanjunkai",
+            "逻辑推理": "https://meet.google.com/lookup/tanjunkai",
+            "高数统考": "https://meet.google.com/lookup/laisiawmoi"
+        }
+    },
+    "S3S1": {
+        "classname": "高三理一",
+        "table": [
+            ["序","时间","星期一","星期二","星期三","星期四","星期五","快捷链接"],
+            ["1","07:30 - 08:10","国文","英文","英文","国文","英文",""],
+            ["2","08:15 - 08:55","国文","物理","数学","物理","华文","Moodle"],
+            ["3","09:00 - 09:40","英文","数学","数学","华文","体育","Classroom"],
+            ["4","10:00 - 10:40","数学","国文","化学","数学","数学","Drive"],
+            ["5","10:45 - 11:25","数学","化学","化学","数学","生物",""],
+            ["6","11:45 - 12:25","生物","华文","华文","化学","周/班",""],
+            ["7","12:30 - 13:05","化学","华文","生物","生物","化学","水处理入门"],
+            ["8","13:50 - 14:25","华文","生物","国文","英文","物理",""],
+            ["9","14:30 - 15:05","物理","生物","物理","英文","物理",""],
+            ["10","15:20 - 15:55","","","","","选修课","FYJB Infonet"],
+            ["11","16:00 - 16:35","","","","","选修课","FYJB SSO"]
+        ],
+        "links": {
+            "数学": "https://meet.google.com/lookup/laisiawmoi",
+            "物理": "https://meet.google.com/lookup/erickohweijien",
+            "华文": "https://meet.google.com/lookup/choohongmei",
+            "Moodle": "https://e.foonyew.edu.my",
+            "体育": "https://meet.google.com/lookup/teeweiyi",
+            "Classroom": "https://classroom.google.com",
+            "化学": "https://meet.google.com/lookup/tanyengkian",
+            "Drive": "https://drive.google.com",
+            "生物":  "https://meet.google.com/lookup/ngyeoklan",
+            "周/班":"https://meet.google.com/lookup/laisiawmoi",
+            "水处理入门": "https://meet.google.com/lookup/tanyulee",
+            "国文": "https://meet.google.com/lookup/koosweelin",
+            "英文": "https://meet.google.com/lookup/gohkimmeng",
+            "选修课": "https://docs.google.com/spreadsheets/d/1esEFaXoXQO0eTOAjCN0-d7MWEEHQVPvDYgZElEty7lo/",
+            "FYJB Infonet": "https://www.foonyew.edu.my/home",
+            "FYJB SSO": "https://sso.foonyew.edu.my/?page=2"
+        }
+    }
+}
